@@ -22,7 +22,7 @@ pipeline {
 	
 	stage('deployment'){
 		steps{
-		deploy adapters: [tomcat9(url: 'http://localhost:8081/', 
+		deploy adapters: [tomcat9(url: 'http://172.212.89.106:8081/', 
                               credentialsId: 'tomcatuser')], 
                      war: 'target/*.war',
                      contextPath: 'app'
@@ -30,14 +30,6 @@ pipeline {
 		
 	}
 	
-	stage('Notification'){
-		steps{
-		emailext(
-			subject: "Job Completed",
-			body: "Jenkins pipeline job for maven build job completed",
-			to: "kannaa.devops@gmail.com"
-		)
-		}
-	}
+	
 	}
 }
